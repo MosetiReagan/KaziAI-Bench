@@ -1,0 +1,51 @@
+id: coding.fix-auth
+version: 1.0.0
+name: Fix Authentication Middleware
+description: >
+  Repair the authentication middleware in auth.js so protected API routes
+  correctly reject missing or invalid authorization tokens with 401 Unauthorized,
+  while properly authenticating valid Bearer tokens.
+category: coding
+difficulty: medium
+author: KaziAI Team
+tags:
+  - node
+  - security
+  - middleware
+  - authentication
+public: true
+
+environment:
+  type: isolated-process
+  fixture_path: benchmarks/coding/fix-auth/fixture
+
+agent:
+  tools:
+    - terminal
+    - filesystem
+
+constraints:
+  network: disabled
+  max_duration_seconds: 300
+  max_steps: 50
+  max_tokens: 50000
+
+verification:
+  type: deterministic
+  checks:
+    - name: Run Authentication Unit Tests
+      type: command
+      command: node test.js
+      expected_exit_code: 0
+      expected_output: "All 3 authentication middleware tests PASSED!"
+      weight: 1.0
+
+scoring:
+  minimum_score: 0.9
+  weights:
+    correctness: 0.40
+    reliability: 0.20
+    safety: 0.15
+    efficiency: 0.10
+    recovery: 0.10
+    cost: 0.05

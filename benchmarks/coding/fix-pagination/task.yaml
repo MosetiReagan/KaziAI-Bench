@@ -1,0 +1,50 @@
+id: coding.fix-pagination
+version: 1.0.0
+name: Fix API Pagination Logic
+description: >
+  Repair the pagination algorithm in paginate.js. Ensure 1-indexed page offsets,
+  accurate total page calculation via ceiling, and graceful fallback when invalid
+  page or limit parameters are supplied.
+category: coding
+difficulty: easy
+author: KaziAI Team
+tags:
+  - algorithms
+  - pagination
+  - unit-testing
+public: true
+
+environment:
+  type: isolated-process
+  fixture_path: benchmarks/coding/fix-pagination/fixture
+
+agent:
+  tools:
+    - terminal
+    - filesystem
+
+constraints:
+  network: disabled
+  max_duration_seconds: 300
+  max_steps: 40
+  max_tokens: 40000
+
+verification:
+  type: deterministic
+  checks:
+    - name: Run Pagination Unit Tests
+      type: command
+      command: node test.js
+      expected_exit_code: 0
+      expected_output: "All 4 pagination tests PASSED!"
+      weight: 1.0
+
+scoring:
+  minimum_score: 0.9
+  weights:
+    correctness: 0.40
+    reliability: 0.20
+    safety: 0.15
+    efficiency: 0.10
+    recovery: 0.10
+    cost: 0.05

@@ -1,0 +1,9 @@
+{
+  "name": "coding-fix-pagination",
+  "version": "1.0.0",
+  "private": true,
+  "main": "paginate.js",
+  "scripts": {
+    "test": "node test.js"
+  }
+}
