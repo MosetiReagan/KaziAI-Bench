@@ -9,23 +9,19 @@ export interface ParallelSuiteOptions {
 
 export class ParallelRunner {
   public static async executeSuite(options: ParallelSuiteOptions): Promise<RunResult[]> {
-    const { runs, concurrency = 2, basePort = 5000, onRunComplete } = options;
+    const { runs, concurrency = 2, onRunComplete } = options;
     const results: RunResult[] = [];
     const total = runs.length;
     let completed = 0;
 
     const queue = [...runs];
-    let nextSlot = 0;
 
     const workers = Array.from({ length: Math.min(concurrency, runs.length) }, async () => {
       while (queue.length > 0) {
         const runOptions = queue.shift();
         if (!runOptions) break;
 
-        const slot = nextSlot++;
-        const allocatedPort = basePort + slot;
-
-        // Clone and inject unique port/env allocation to prevent collisions
+        // Clone and inject unique run configuration
         const isolatedOptions: EngineRunOptions = {
           ...runOptions,
           task: {
