@@ -1,0 +1,23 @@
+{
+  "name": "@kazi-ai/sandbox",
+  "version": "1.0.0",
+  "description": "Sandbox isolation, security policies, command sanitization, and Docker abstraction for KaziAI Bench",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@kazi-ai/core": "workspace:*",
+    "@kazi-ai/task-schema": "workspace:*",
+    "@kazi-ai/environment-sdk": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}
