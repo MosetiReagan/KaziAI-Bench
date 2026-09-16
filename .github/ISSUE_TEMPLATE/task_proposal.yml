@@ -1,0 +1,60 @@
+name: Benchmark Task Proposal
+description: Propose a new reproducible, verifiable benchmark task for KaziAI Bench
+title: "[TASK]: <domain>.<task-name>"
+labels: ["task-proposal", "needs-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for contributing a benchmark task to KaziAI Bench!
+        Please ensure your task satisfies the 35-point task rubric (canary string, deterministic oracle pass, negative no-op fail, resource bounds).
+  - type: input
+    id: task-id
+    attributes:
+      label: Task Identifier
+      description: Must follow category.name dot notation (e.g. database.connection-pool-leak)
+      placeholder: category.my-task-name
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Task Domain
+      options:
+        - coding
+        - debugging
+        - database
+        - security
+        - terminal
+        - devops
+        - api
+        - mcp
+    validations:
+      required: true
+  - type: textarea
+    id: problem-statement
+    attributes:
+      label: Problem Statement & Context
+      description: Explain the failure mode or requirement in realistic detail.
+    validations:
+      required: true
+  - type: textarea
+    id: verification-mechanism
+    attributes:
+      label: Deterministic Verification Mechanism
+      description: How is the solution verified? (e.g. test suite exit code, SQLite EXPLAIN plan, exploit script)
+    validations:
+      required: true
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Task Rigor Checklist
+      options:
+        - label: Tested with negative no-op run (fails on untouched fixture)
+          required: true
+        - label: Tested with reference oracle solution (passes 100%)
+          required: true
+        - label: Embedded unique anti-contamination canary GUID
+          required: true
+        - label: Validated against 'kazi-bench validate <path>' with 0 errors
+          required: true

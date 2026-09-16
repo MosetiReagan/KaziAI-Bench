@@ -1,0 +1,31 @@
+name: Bug Report
+description: File a bug report or report a broken task / dependency drift
+title: "[BUG]: <title>"
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Report an issue with the benchmark engine, verifier dispatcher, sandboxing, or drifted task dependencies.
+  - type: input
+    id: task-id
+    attributes:
+      label: Affected Task or Package
+      placeholder: e.g. devops.docker-healthcheck or @kazi-ai/sandbox
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual Behavior & Output / Trace
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment Info
+      placeholder: Node v22.x, Docker version 27.x, OS macOS / Linux

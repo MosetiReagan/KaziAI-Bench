@@ -1,0 +1,19 @@
+# CODEOWNERS for KaziAI Bench
+# Defines individuals and teams responsible for maintaining modules, task definitions, and security policies.
+
+# Global owners
+* @MosetiReagan
+
+# Benchmark tasks & verifiers
+/benchmarks/ @MosetiReagan
+/packages/verifier/ @MosetiReagan
+/packages/task-schema/ @MosetiReagan
+
+# Sandboxing & security confinement
+/packages/sandbox/ @MosetiReagan
+/packages/environment-sdk/ @MosetiReagan
+/SECURITY.md @MosetiReagan
+
+# CI/CD Workflows & actions
+/.github/ @MosetiReagan
+/action.yml @MosetiReagan
