@@ -7,3 +7,4 @@ export * from "./security-verifier.js";
 export * from "./llm-judge.js";
 export * from "./dispatcher.js";
 export * from "./validation-pipeline.js";
+export * from "./hacker-fixer.js";
