@@ -3,6 +3,7 @@ import { LayoutDashboard, Award, Terminal, FileCode2, GitCompare, ShieldCheck } 
 import { LeaderboardView } from "./components/LeaderboardView";
 import { RunsView } from "./components/RunsView";
 import { TrajectoryView } from "./components/TrajectoryView";
+import { CompareView } from "./components/CompareView";
 
 export function App() {
   const [activeTab, setActiveTab] = useState<"overview" | "leaderboard" | "runs" | "trajectory" | "compare">("overview");
@@ -115,12 +116,7 @@ export function App() {
         {activeTab === "leaderboard" && <LeaderboardView />}
         {activeTab === "runs" && <RunsView />}
         {activeTab === "trajectory" && <TrajectoryView />}
-
-        {activeTab !== "overview" && activeTab !== "leaderboard" && activeTab !== "runs" && activeTab !== "trajectory" && (
-          <div className="bg-gray-900/40 border border-gray-800 rounded-xl p-8 text-center text-gray-400">
-            Tab <span className="text-blue-400 font-semibold">{activeTab}</span> component loaded.
-          </div>
-        )}
+        {activeTab === "compare" && <CompareView />}
       </main>
     </div>
   );
