@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use KaziAI Bench in your research, please cite it using these metadata."
+title: "KaziAI Bench: A Multi-Turn Execution Benchmark for Evaluating Agent Reliability, Tool Recovery, and System Safety"
+authors:
+  - family-names: "Moseti"
+    given-names: "Reagan"
+    orcid: "https://orcid.org/0009-0000-0000-0000"
+    affiliation: "KaziAI Working Group"
+date-released: 2026-09-16
+version: 2.0.0
+license: Apache-2.0
+repository-code: "https://github.com/MosetiReagan/KaziAI-Bench"
+url: "https://mosetireagan.github.io/KaziAI-Bench/"
+keywords:
+  - "artificial intelligence"
+  - "ai agents"
+  - "benchmarking"
+  - "evaluation"
+  - "reliability"
+  - "model context protocol"
+  - "sandboxing"
+preferred-citation:
+  type: article
+  authors:
+    - family-names: "Moseti"
+      given-names: "Reagan"
+  title: "KaziAI Bench: A Multi-Turn Execution Benchmark for Evaluating Agent Reliability, Tool Recovery, and System Safety"
+  year: 2026
+  month: 9
+  publisher: "arXiv"
+  url: "https://github.com/MosetiReagan/KaziAI-Bench"
