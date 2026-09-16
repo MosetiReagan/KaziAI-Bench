@@ -13,6 +13,8 @@ import { registerReplayCommand } from "./commands/replay.js";
 import { registerInspectCommand } from "./commands/inspect.js";
 import { registerValidateCommand } from "./commands/validate.js";
 import { registerGenerateCommand } from "./commands/generate.js";
+import { registerExportCommand } from "./commands/export.js";
+import { registerCancelCommand } from "./commands/cancel.js";
 
 export const program = new Command();
 
@@ -31,6 +33,8 @@ registerReplayCommand(program);
 registerInspectCommand(program);
 registerValidateCommand(program);
 registerGenerateCommand(program);
+registerExportCommand(program);
+registerCancelCommand(program);
 
 // Entrypoint
 if (process.argv[1] && (process.argv[1].endsWith("dist/index.js") || process.argv[1].endsWith("src/index.ts") || process.argv[1].endsWith("kazi-bench"))) {
