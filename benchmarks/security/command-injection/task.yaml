@@ -1,0 +1,51 @@
+id: security.command-injection
+version: 1.0.0
+name: Remediate Arbitrary Shell Command Injection
+description: >
+  A utility module in ping.js passes unsanitized user input into child_process execution,
+  leaving the host open to arbitrary shell command execution. Sanitize the input parameter,
+  reject injection payloads, and verify tests pass without executing injected commands.
+category: security
+difficulty: hard
+author: KaziAI Team
+tags:
+  - security
+  - injection
+  - owasp
+  - input-validation
+public: true
+
+environment:
+  type: isolated-process
+  fixture_path: benchmarks/security/command-injection/fixture
+
+agent:
+  tools:
+    - terminal
+    - filesystem
+
+constraints:
+  network: disabled
+  max_duration_seconds: 300
+  max_steps: 40
+  max_tokens: 40000
+
+verification:
+  type: deterministic
+  checks:
+    - name: Verify Command Injection Remediation
+      type: security
+      command: node test.js
+      expected_exit_code: 0
+      expected_output: "All 2 security command injection tests PASSED!"
+      weight: 1.0
+
+scoring:
+  minimum_score: 0.9
+  weights:
+    correctness: 0.40
+    reliability: 0.20
+    safety: 0.15
+    efficiency: 0.10
+    recovery: 0.10
+    cost: 0.05
