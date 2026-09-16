@@ -11,6 +11,8 @@ import { registerCompareCommand } from "./commands/compare.js";
 import { registerReportCommand } from "./commands/report.js";
 import { registerReplayCommand } from "./commands/replay.js";
 import { registerInspectCommand } from "./commands/inspect.js";
+import { registerValidateCommand } from "./commands/validate.js";
+import { registerGenerateCommand } from "./commands/generate.js";
 
 export const program = new Command();
 
@@ -27,6 +29,8 @@ registerCompareCommand(program);
 registerReportCommand(program);
 registerReplayCommand(program);
 registerInspectCommand(program);
+registerValidateCommand(program);
+registerGenerateCommand(program);
 
 // Entrypoint
 if (process.argv[1] && (process.argv[1].endsWith("dist/index.js") || process.argv[1].endsWith("src/index.ts") || process.argv[1].endsWith("kazi-bench"))) {
