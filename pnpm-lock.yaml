@@ -48,6 +48,58 @@ importers:
         specifier: ^2.1.8
         version: 2.1.9(@types/node@22.20.3)
 
+  apps/cli:
+    dependencies:
+      '@kazi-ai/agent-sdk':
+        specifier: workspace:*
+        version: link:../../packages/agent-sdk
+      '@kazi-ai/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@kazi-ai/dataset':
+        specifier: workspace:*
+        version: link:../../packages/dataset
+      '@kazi-ai/environment-sdk':
+        specifier: workspace:*
+        version: link:../../packages/environment-sdk
+      '@kazi-ai/metrics':
+        specifier: workspace:*
+        version: link:../../packages/metrics
+      '@kazi-ai/reporting':
+        specifier: workspace:*
+        version: link:../../packages/reporting
+      '@kazi-ai/sandbox':
+        specifier: workspace:*
+        version: link:../../packages/sandbox
+      '@kazi-ai/task-schema':
+        specifier: workspace:*
+        version: link:../../packages/task-schema
+      '@kazi-ai/tracing':
+        specifier: workspace:*
+        version: link:../../packages/tracing
+      '@kazi-ai/verifier':
+        specifier: workspace:*
+        version: link:../../packages/verifier
+      commander:
+        specifier: ^13.0.0
+        version: 13.1.0
+      picocolors:
+        specifier: ^1.1.1
+        version: 1.1.1
+      yaml:
+        specifier: ^2.7.0
+        version: 2.9.1
+    devDependencies:
+      '@types/node':
+        specifier: ^22.10.2
+        version: 22.20.3
+      typescript:
+        specifier: ^5.7.2
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.8
+        version: 2.1.9(@types/node@22.20.3)
+
   packages/agent-sdk:
     dependencies:
       '@kazi-ai/core':
@@ -605,6 +657,10 @@ packages:
     resolution: {integrity: sha512-PAJdDJusoxnwm1VwW07VWwUN1sl7smmC3OKggvndJFadxxDRyFJBX/ggnu/KE4kQAB7a3Dp8f/YXC1FlUprWmA==}
     engines: {node: '>= 16'}
 
+  commander@13.1.0:
+    resolution: {integrity: sha512-/rFeCpNJQbhSZjGVwO9RFV3xPqbnERS8MmIQzCtD/zl6gpJuV/bMLuN92oG3F7d8oDEHHRrujSXNUr8fpjntKw==}
+    engines: {node: '>=18'}
+
   debug@4.4.3:
     resolution: {integrity: sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==}
     engines: {node: '>=6.0'}
@@ -1009,6 +1065,8 @@ snapshots:
       pathval: 2.0.1
 
   check-error@2.1.3: {}
+
+  commander@13.1.0: {}
 
   debug@4.4.3:
     dependencies:

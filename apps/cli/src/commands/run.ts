@@ -1,7 +1,6 @@
 import path from "path";
 import fs from "fs";
 import pc from "picocolors";
-import yaml from "yaml";
 import { ExecutionEngine, generateRunId, captureRunMetadata } from "@kazi-ai/core";
 import { loadTasksFromDirectory } from "@kazi-ai/task-schema";
 import { LocalEnvironment } from "@kazi-ai/environment-sdk";
