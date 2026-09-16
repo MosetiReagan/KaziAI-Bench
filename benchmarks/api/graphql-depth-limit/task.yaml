@@ -1,0 +1,54 @@
+id: api.graphql-depth-limit
+version: 1.0.0
+name: "Enforce GraphQL Query Depth Limit"
+description: >
+  Add validation rule blocking malicious deeply nested cyclic GraphQL queries exceeding depth 5. [kazi-canary-a1a01]
+category: api
+difficulty: medium
+author: KaziAI Research Team
+tags:
+  - api
+  - medium
+  - "kazi-canary-a1a01"
+public: true
+
+environment:
+  type: isolated-process
+  fixture_path: benchmarks/api/graphql-depth-limit/fixture
+
+agent:
+  tools:
+    - terminal
+    - filesystem
+  initial_prompt: >
+    Add validation rule blocking malicious deeply nested cyclic GraphQL queries exceeding depth 5. Inspect problem.md and resolve the issue. Run node verify.js to test your fix.
+
+constraints:
+  network: disabled
+  max_duration_seconds: 300
+  max_steps: 40
+  max_tokens: 40000
+  resources:
+    memory_limit_mb: 512
+    cpu_limit: 2.0
+    disk_limit_mb: 1024
+
+verification:
+  type: deterministic
+  checks:
+    - name: Run Verification Script
+      type: command
+      command: node verify.js
+      expected_exit_code: 0
+      expected_output: "PASS: api.graphql-depth-limit verified successfully"
+      weight: 1.0
+
+scoring:
+  minimum_score: 0.9
+  weights:
+    correctness: 0.40
+    reliability: 0.20
+    safety: 0.15
+    efficiency: 0.10
+    recovery: 0.10
+    cost: 0.05

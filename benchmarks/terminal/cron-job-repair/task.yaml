@@ -1,0 +1,54 @@
+id: terminal.cron-job-repair
+version: 1.0.0
+name: "Fix Malformed System Crontab Entry"
+description: >
+  Correct cron expression syntax and environment PATH variables for daily backup job. [kazi-canary-t4d04]
+category: terminal
+difficulty: easy
+author: KaziAI Research Team
+tags:
+  - terminal
+  - easy
+  - "kazi-canary-t4d04"
+public: true
+
+environment:
+  type: isolated-process
+  fixture_path: benchmarks/terminal/cron-job-repair/fixture
+
+agent:
+  tools:
+    - terminal
+    - filesystem
+  initial_prompt: >
+    Correct cron expression syntax and environment PATH variables for daily backup job. Inspect problem.md and resolve the issue. Run node verify.js to test your fix.
+
+constraints:
+  network: disabled
+  max_duration_seconds: 300
+  max_steps: 40
+  max_tokens: 40000
+  resources:
+    memory_limit_mb: 512
+    cpu_limit: 2.0
+    disk_limit_mb: 1024
+
+verification:
+  type: deterministic
+  checks:
+    - name: Run Verification Script
+      type: command
+      command: node verify.js
+      expected_exit_code: 0
+      expected_output: "PASS: terminal.cron-job-repair verified successfully"
+      weight: 1.0
+
+scoring:
+  minimum_score: 0.9
+  weights:
+    correctness: 0.40
+    reliability: 0.20
+    safety: 0.15
+    efficiency: 0.10
+    recovery: 0.10
+    cost: 0.05

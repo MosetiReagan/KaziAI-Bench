@@ -1,0 +1,54 @@
+id: debugging.race-condition
+version: 1.0.0
+name: "Fix Async Race Condition on Balance Update"
+description: >
+  Fix simultaneous debit transactions leading to balance inconsistency using atomic mutex locks. [kazi-canary-d2b02]
+category: debugging
+difficulty: hard
+author: KaziAI Research Team
+tags:
+  - debugging
+  - hard
+  - "kazi-canary-d2b02"
+public: true
+
+environment:
+  type: isolated-process
+  fixture_path: benchmarks/debugging/race-condition/fixture
+
+agent:
+  tools:
+    - terminal
+    - filesystem
+  initial_prompt: >
+    Fix simultaneous debit transactions leading to balance inconsistency using atomic mutex locks. Inspect problem.md and resolve the issue. Run node verify.js to test your fix.
+
+constraints:
+  network: disabled
+  max_duration_seconds: 300
+  max_steps: 40
+  max_tokens: 40000
+  resources:
+    memory_limit_mb: 512
+    cpu_limit: 2.0
+    disk_limit_mb: 1024
+
+verification:
+  type: deterministic
+  checks:
+    - name: Run Verification Script
+      type: command
+      command: node verify.js
+      expected_exit_code: 0
+      expected_output: "PASS: debugging.race-condition verified successfully"
+      weight: 1.0
+
+scoring:
+  minimum_score: 0.9
+  weights:
+    correctness: 0.40
+    reliability: 0.20
+    safety: 0.15
+    efficiency: 0.10
+    recovery: 0.10
+    cost: 0.05
