@@ -1,0 +1,53 @@
+id: database.query-optimization
+version: 1.0.0
+name: Optimize Database Query via Index Creation
+description: >
+  The events table in bench.db experiences slow query performance due to missing indexes.
+  Inspect setup.sql, identify the slow query pattern on user_id and status, and create
+  an index named idx_events_user_status to optimize query execution from SCAN to SEARCH.
+category: database
+difficulty: medium
+author: KaziAI Team
+tags:
+  - sql
+  - sqlite
+  - query-optimization
+  - indexing
+public: true
+
+environment:
+  type: isolated-process
+  fixture_path: benchmarks/database/query-optimization/fixture
+  setup:
+    - command: sqlite3 bench.db < setup.sql
+
+agent:
+  tools:
+    - terminal
+    - filesystem
+
+constraints:
+  network: disabled
+  max_duration_seconds: 300
+  max_steps: 40
+  max_tokens: 40000
+
+verification:
+  type: deterministic
+  checks:
+    - name: Verify Index Exists and Query Plan Uses Index Search
+      type: command
+      command: sqlite3 bench.db "EXPLAIN QUERY PLAN SELECT * FROM events WHERE user_id = 5 AND status = 'active';"
+      expected_exit_code: 0
+      expected_output: "USING INDEX idx_events_user_status"
+      weight: 1.0
+
+scoring:
+  minimum_score: 0.9
+  weights:
+    correctness: 0.40
+    reliability: 0.20
+    safety: 0.15
+    efficiency: 0.10
+    recovery: 0.10
+    cost: 0.05
