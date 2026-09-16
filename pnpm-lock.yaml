@@ -65,6 +65,28 @@ importers:
         specifier: ^2.1.8
         version: 2.1.9(@types/node@22.20.3)
 
+  packages/dataset:
+    dependencies:
+      '@kazi-ai/core':
+        specifier: workspace:*
+        version: link:../core
+      '@kazi-ai/tracing':
+        specifier: workspace:*
+        version: link:../tracing
+      nanoid:
+        specifier: ^5.0.9
+        version: 5.1.16
+    devDependencies:
+      '@types/node':
+        specifier: ^22.10.2
+        version: 22.20.3
+      typescript:
+        specifier: ^5.7.2
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.8
+        version: 2.1.9(@types/node@22.20.3)
+
   packages/environment-sdk:
     dependencies:
       '@kazi-ai/core':
@@ -123,6 +145,34 @@ importers:
       zod-to-json-schema:
         specifier: ^3.24.1
         version: 3.25.2(zod@3.25.76)
+    devDependencies:
+      '@types/node':
+        specifier: ^22.10.2
+        version: 22.20.3
+      typescript:
+        specifier: ^5.7.2
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.8
+        version: 2.1.9(@types/node@22.20.3)
+
+  packages/tracing:
+    dependencies:
+      '@kazi-ai/agent-sdk':
+        specifier: workspace:*
+        version: link:../agent-sdk
+      '@kazi-ai/core':
+        specifier: workspace:*
+        version: link:../core
+      '@kazi-ai/environment-sdk':
+        specifier: workspace:*
+        version: link:../environment-sdk
+      '@kazi-ai/task-schema':
+        specifier: workspace:*
+        version: link:../task-schema
+      nanoid:
+        specifier: ^5.0.9
+        version: 5.1.16
     devDependencies:
       '@types/node':
         specifier: ^22.10.2

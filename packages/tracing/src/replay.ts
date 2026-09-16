@@ -1,5 +1,5 @@
 import { BenchmarkEnvironment } from "@kazi-ai/environment-sdk";
-import { AgentTrajectory, TrajectoryEvent } from "./types.js";
+import { AgentTrajectory } from "./types.js";
 
 export interface ReplayDiff {
   step: number;
