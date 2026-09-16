@@ -1,0 +1,55 @@
+name: 'KaziAI Bench Action'
+description: 'Automated AI agent reliability and regression benchmarking in CI/CD'
+author: 'KaziAI'
+branding:
+  icon: 'check-circle'
+  color: 'blue'
+
+inputs:
+  suite:
+    description: 'Benchmark suite to execute (e.g. coding-v1, security-v1, kazi-bench-core-v1)'
+    required: false
+    default: 'kazi-bench-core-v1'
+  task:
+    description: 'Specific benchmark task ID to run (e.g. coding.fix-auth)'
+    required: false
+  agent:
+    description: 'Agent adapter identifier to evaluate'
+    required: true
+  model:
+    description: 'Underlying model identifier'
+    required: false
+    default: 'default-model'
+  compare-baseline:
+    description: 'Path or run ID of baseline run to compare against for regression detection'
+    required: false
+  fail-on-regression:
+    description: 'Whether to fail CI if regression exceeds thresholds'
+    required: false
+    default: 'true'
+  max-success-delta:
+    description: 'Maximum allowable drop in success rate before regression failure'
+    required: false
+    default: '-0.03'
+  max-cost-increase:
+    description: 'Maximum allowable percentage increase in cost before regression failure'
+    required: false
+    default: '0.20'
+  max-latency-increase:
+    description: 'Maximum allowable percentage increase in latency before regression failure'
+    required: false
+    default: '0.25'
+
+outputs:
+  run-id:
+    description: 'Benchmark run ID'
+  success-rate:
+    description: 'Computed task success rate'
+  composite-score:
+    description: 'Overall reliability composite score'
+  regression-detected:
+    description: 'Boolean indicating if any regression was detected'
+
+runs:
+  using: 'node20'
+  main: 'scripts/ci-action.js'
