@@ -6,7 +6,10 @@ import path from "path";
 export function registerTaskRoutes(app: FastifyInstance, store: MemoryStore): void {
   // Sync tasks on startup
   try {
-    const benchmarksDir = path.resolve(process.cwd(), "benchmarks");
+    let benchmarksDir = path.resolve(process.cwd(), "benchmarks");
+    if (!path.basename(benchmarksDir).includes("benchmarks") || !loadTasksFromDirectory(benchmarksDir).length) {
+      benchmarksDir = path.resolve(process.cwd(), "../../benchmarks");
+    }
     const loaded = loadTasksFromDirectory(benchmarksDir);
     for (const t of loaded) {
       store.upsertTask({
