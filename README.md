@@ -4,10 +4,11 @@
 
 ### The Production-Grade AI Agent Reliability Benchmark
 
-[![CI Tests](https://github.com/kazi-ai/kazi-bench/actions/workflows/ci.yml/badge.svg)](https://github.com/kazi-ai/kazi-bench/actions)
+[![CI Tests](https://github.com/MosetiReagan/KaziAI-Bench/actions/workflows/ci.yml/badge.svg)](https://github.com/MosetiReagan/KaziAI-Bench/actions)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6.svg)](https://www.typescriptlang.org/)
 [![Python SDK](https://img.shields.io/badge/PyPI-kazi--bench-3776AB.svg)](https://pypi.org/project/kazi-bench/)
+[![Live Leaderboard](https://img.shields.io/badge/Leaderboard-Live%20Dashboard-10B981.svg)](https://mosetireagan.github.io/KaziAI-Bench/)
 
 *Measure whether autonomous AI agents can actually complete real, multi-step engineering tasks safely, efficiently, and recover when things go wrong.*
 
@@ -52,8 +53,8 @@ Install the CLI globally or run it directly with `pnpm`:
 
 ```bash
 # Clone the repository
-git clone https://github.com/kazi-ai/kazi-bench.git
-cd kazi-bench
+git clone https://github.com/MosetiReagan/KaziAI-Bench.git
+cd KaziAI-Bench
 
 # Install monorepo dependencies
 pnpm install
