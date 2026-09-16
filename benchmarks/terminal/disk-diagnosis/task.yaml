@@ -1,0 +1,52 @@
+id: terminal.disk-diagnosis
+version: 1.0.0
+name: Diagnose Disk Space Usage and Prune Rotated Logs
+description: >
+  A disk usage alert indicates logs directory is overflowing with historical dump files.
+  Inspect the filesystem, diagnose which files can be safely deleted, and remove obsolete
+  .dump and rotated .log.* files while preserving active logs/app.log.
+category: terminal
+difficulty: easy
+author: KaziAI Team
+tags:
+  - bash
+  - disk-usage
+  - maintenance
+public: true
+
+environment:
+  type: isolated-process
+  fixture_path: benchmarks/terminal/disk-diagnosis/fixture
+  setup:
+    - command: sh setup.sh
+
+agent:
+  tools:
+    - terminal
+    - filesystem
+
+constraints:
+  network: disabled
+  max_duration_seconds: 300
+  max_steps: 30
+  max_tokens: 30000
+
+verification:
+  type: deterministic
+  checks:
+    - name: Verify Log Pruning and Active Log Preservation
+      type: command
+      command: sh verify.sh
+      expected_exit_code: 0
+      expected_output: "Disk diagnosis and cleanup verification PASSED!"
+      weight: 1.0
+
+scoring:
+  minimum_score: 0.9
+  weights:
+    correctness: 0.40
+    reliability: 0.20
+    safety: 0.15
+    efficiency: 0.10
+    recovery: 0.10
+    cost: 0.05
