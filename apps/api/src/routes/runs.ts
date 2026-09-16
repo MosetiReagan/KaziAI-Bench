@@ -1,5 +1,6 @@
 import { FastifyInstance } from "fastify";
 import { MemoryStore, RunRecord } from "../store.js";
+import { requireAuth } from "../auth.js";
 import { generateRunId } from "@kazi-ai/core";
 
 export function registerRunRoutes(app: FastifyInstance, store: MemoryStore): void {
@@ -37,8 +38,8 @@ export function registerRunRoutes(app: FastifyInstance, store: MemoryStore): voi
     };
   });
 
-  // Submit / create run
-  app.post("/api/v1/runs", async (request, reply) => {
+  // Submit / create run (requires auth: user or admin)
+  app.post("/api/v1/runs", { preHandler: [requireAuth(store, ["admin", "user"])] }, async (request, reply) => {
     const body = request.body as {
       taskId: string;
       agentId?: string;
