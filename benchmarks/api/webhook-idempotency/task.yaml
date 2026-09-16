@@ -1,0 +1,51 @@
+id: api.webhook-idempotency
+version: 1.0.0
+name: Implement Webhook Delivery Idempotency
+description: >
+  The webhook handler in receiver.js re-processes side-effects on duplicate delivery,
+  leading to duplicate event transactions. Implement idempotency checking by event ID
+  so retried events return HTTP 200 without executing duplicate actions.
+category: api
+difficulty: medium
+author: KaziAI Team
+tags:
+  - api
+  - webhook
+  - idempotency
+  - deduplication
+public: true
+
+environment:
+  type: isolated-process
+  fixture_path: benchmarks/api/webhook-idempotency/fixture
+
+agent:
+  tools:
+    - terminal
+    - filesystem
+
+constraints:
+  network: disabled
+  max_duration_seconds: 300
+  max_steps: 40
+  max_tokens: 40000
+
+verification:
+  type: deterministic
+  checks:
+    - name: Verify Webhook Idempotency Deduplication
+      type: command
+      command: node test_idempotency.js
+      expected_exit_code: 0
+      expected_output: "All webhook idempotency tests PASSED!"
+      weight: 1.0
+
+scoring:
+  minimum_score: 0.9
+  weights:
+    correctness: 0.40
+    reliability: 0.20
+    safety: 0.15
+    efficiency: 0.10
+    recovery: 0.10
+    cost: 0.05
