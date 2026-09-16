@@ -1,5 +1,5 @@
 import { BenchmarkEnvironment } from "@kazi-ai/environment-sdk";
-import { VerificationCheck, TaskDefinition } from "@kazi-ai/task-schema";
+import { TaskDefinition } from "@kazi-ai/task-schema";
 
 export interface Evidence {
   name: string;

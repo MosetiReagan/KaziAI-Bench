@@ -1,5 +1,5 @@
 import { VerificationCheck } from "@kazi-ai/task-schema";
-import { Evidence, VerificationCheckResult, VerificationContext } from "./types.js";
+import { VerificationCheckResult, VerificationContext } from "./types.js";
 
 export class CommandVerifier {
   public static async verifyCheck(

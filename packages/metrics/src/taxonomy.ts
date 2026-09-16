@@ -32,7 +32,7 @@ export class FailureClassifier {
     const msg = error instanceof Error ? error.message : String(error);
     const time = new Date().toISOString();
 
-    if (/timeout/i.test(msg)) {
+    if (/timeout|timed out|time limit/i.test(msg)) {
       return {
         type: "TIMEOUT",
         message: msg,
