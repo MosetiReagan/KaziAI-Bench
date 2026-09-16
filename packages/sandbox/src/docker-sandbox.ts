@@ -212,6 +212,11 @@ export class DockerSandbox implements BenchmarkEnvironment {
       child.stdout?.on("data", (d) => (out += d.toString()));
       child.stderr?.on("data", (d) => (err += d.toString()));
 
+      child.on("error", (err) => {
+        clearTimeout(timer);
+        reject(err);
+      });
+
       child.on("close", (code) => {
         clearTimeout(timer);
         if (code === 0) resolve(out);
