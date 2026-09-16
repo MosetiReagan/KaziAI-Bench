@@ -4,6 +4,7 @@ import rateLimit from "@fastify/rate-limit";
 import { MemoryStore } from "./store.js";
 import { registerTaskRoutes } from "./routes/tasks.js";
 import { registerRunRoutes } from "./routes/runs.js";
+import { registerSubmissionRoutes } from "./routes/submissions.js";
 import { BENCHMARK_NAME, BENCHMARK_VERSION } from "@kazi-ai/core";
 
 export function createServer(store: MemoryStore = new MemoryStore()): FastifyInstance {
@@ -14,6 +15,7 @@ export function createServer(store: MemoryStore = new MemoryStore()): FastifyIns
 
   registerTaskRoutes(app, store);
   registerRunRoutes(app, store);
+  registerSubmissionRoutes(app, store);
 
   // Basic Health Check
   app.get("/health", async () => {
