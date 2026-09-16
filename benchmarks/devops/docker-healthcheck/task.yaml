@@ -1,0 +1,51 @@
+id: devops.docker-healthcheck
+version: 1.0.0
+name: Repair Container Health Check Configuration
+description: >
+  A production container specification in Dockerfile uses an Alpine Linux base image
+  but attempts to invoke curl in its HEALTHCHECK directive, causing containers to fail
+  readiness checks. Repair the healthcheck to use wget or install curl appropriately.
+category: devops
+difficulty: medium
+author: KaziAI Team
+tags:
+  - docker
+  - devops
+  - container-health
+  - alpine
+public: true
+
+environment:
+  type: isolated-process
+  fixture_path: benchmarks/devops/docker-healthcheck/fixture
+
+agent:
+  tools:
+    - terminal
+    - filesystem
+
+constraints:
+  network: disabled
+  max_duration_seconds: 300
+  max_steps: 30
+  max_tokens: 30000
+
+verification:
+  type: deterministic
+  checks:
+    - name: Verify Dockerfile Health Check Configuration
+      type: command
+      command: sh test_healthcheck.sh
+      expected_exit_code: 0
+      expected_output: "DevOps Docker healthcheck test PASSED!"
+      weight: 1.0
+
+scoring:
+  minimum_score: 0.9
+  weights:
+    correctness: 0.40
+    reliability: 0.20
+    safety: 0.15
+    efficiency: 0.10
+    recovery: 0.10
+    cost: 0.05
