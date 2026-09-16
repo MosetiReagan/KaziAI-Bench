@@ -15,6 +15,7 @@ import { registerValidateCommand } from "./commands/validate.js";
 import { registerGenerateCommand } from "./commands/generate.js";
 import { registerExportCommand } from "./commands/export.js";
 import { registerCancelCommand } from "./commands/cancel.js";
+import { registerDoctorCommand } from "./commands/doctor.js";
 
 export const program = new Command();
 
@@ -35,6 +36,7 @@ registerValidateCommand(program);
 registerGenerateCommand(program);
 registerExportCommand(program);
 registerCancelCommand(program);
+registerDoctorCommand(program);
 
 // Entrypoint
 if (process.argv[1] && (process.argv[1].endsWith("dist/index.js") || process.argv[1].endsWith("src/index.ts") || process.argv[1].endsWith("kazi-bench"))) {
