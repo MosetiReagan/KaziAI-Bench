@@ -1,0 +1,50 @@
+id: debugging.api-500
+version: 1.0.0
+name: Diagnose and Fix HTTP 500 Unhandled TypeError
+description: >
+  An API endpoint handler in handler.js crashes with HTTP 500 when incoming JSON
+  payloads omit optional nested profile fields. Inspect handler.js, add safe optional
+  chaining / fallback handling, and verify all test cases pass.
+category: debugging
+difficulty: easy
+author: KaziAI Team
+tags:
+  - node
+  - debugging
+  - error-handling
+public: true
+
+environment:
+  type: isolated-process
+  fixture_path: benchmarks/debugging/api-500/fixture
+
+agent:
+  tools:
+    - terminal
+    - filesystem
+
+constraints:
+  network: disabled
+  max_duration_seconds: 300
+  max_steps: 40
+  max_tokens: 40000
+
+verification:
+  type: deterministic
+  checks:
+    - name: Verify API 500 Bug Remediation
+      type: command
+      command: node test.js
+      expected_exit_code: 0
+      expected_output: "All 4 API-500 debugging tests PASSED!"
+      weight: 1.0
+
+scoring:
+  minimum_score: 0.9
+  weights:
+    correctness: 0.40
+    reliability: 0.20
+    safety: 0.15
+    efficiency: 0.10
+    recovery: 0.10
+    cost: 0.05

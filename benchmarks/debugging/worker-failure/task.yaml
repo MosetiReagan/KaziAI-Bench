@@ -1,0 +1,50 @@
+id: debugging.worker-failure
+version: 1.0.0
+name: Fix Background Worker Unhandled Exception
+description: >
+  A background queue processor in worker.js crashes when individual jobs throw
+  or time out, leaving jobs trapped in an uncompleted state. Add robust error
+  recovery so failing jobs transition cleanly to status 'failed' with captured error details.
+category: debugging
+difficulty: medium
+author: KaziAI Team
+tags:
+  - async
+  - queue
+  - error-recovery
+public: true
+
+environment:
+  type: isolated-process
+  fixture_path: benchmarks/debugging/worker-failure/fixture
+
+agent:
+  tools:
+    - terminal
+    - filesystem
+
+constraints:
+  network: disabled
+  max_duration_seconds: 300
+  max_steps: 40
+  max_tokens: 40000
+
+verification:
+  type: deterministic
+  checks:
+    - name: Verify Queue Worker Failure Recovery
+      type: command
+      command: node test.js
+      expected_exit_code: 0
+      expected_output: "All 2 worker failure recovery tests PASSED!"
+      weight: 1.0
+
+scoring:
+  minimum_score: 0.9
+  weights:
+    correctness: 0.40
+    reliability: 0.20
+    safety: 0.15
+    efficiency: 0.10
+    recovery: 0.10
+    cost: 0.05
