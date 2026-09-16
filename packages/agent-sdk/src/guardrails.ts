@@ -18,7 +18,7 @@ export class ToolGuardrail {
     this.maxConsecutiveIdenticalCalls = options.maxConsecutiveIdenticalCalls || 5;
   }
 
-  public async wrapTool(tool: ToolDefinition, context: AgentContext): Promise<ToolDefinition> {
+  public async wrapTool(tool: ToolDefinition, _context?: AgentContext): Promise<ToolDefinition> {
     return {
       name: tool.name,
       description: tool.description,

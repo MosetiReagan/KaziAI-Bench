@@ -22,7 +22,17 @@ export class ReferenceAgent extends BaseAgentAdapter {
         tokens: { inputTokens: 450, outputTokens: 85, totalTokens: 535 },
       });
 
-      if (terminalTool) {
+      if (filesystemTool) {
+        this.toolCalls++;
+        const t0 = Date.now();
+        const listResult = await filesystemTool.execute({ action: "list", path: "." }, this.context);
+        this.recordStep("tool_call", {
+          tool: "filesystem",
+          input: { action: "list", path: "." },
+          output: listResult.output,
+          durationMs: Date.now() - t0,
+        });
+      } else if (terminalTool) {
         this.toolCalls++;
         const t0 = Date.now();
         const listResult = await terminalTool.execute({ command: "ls -la" }, this.context);
@@ -44,10 +54,13 @@ export class ReferenceAgent extends BaseAgentAdapter {
       if (terminalTool) {
         this.toolCalls++;
         const t1 = Date.now();
-        const checkResult = await terminalTool.execute({ command: "npm test || pytest || true" }, this.context);
+        const checkResult = await terminalTool.execute(
+          { command: "test -f package.json && npm test || test -f test.sh && sh test.sh || echo 'no test suite found, skipping'" },
+          this.context
+        );
         this.recordStep("tool_call", {
           tool: "terminal",
-          input: { command: "npm test || pytest || true" },
+          input: { command: "check_tests" },
           output: checkResult.output,
           durationMs: Date.now() - t1,
         });
@@ -71,12 +84,12 @@ export class ReferenceAgent extends BaseAgentAdapter {
         this.toolCalls++;
         const t2 = Date.now();
         const applyFix = await terminalTool.execute(
-          { command: "test -f solve.sh && sh solve.sh || test -f fix.py && python3 fix.py || true" },
+          { command: "test -f solve.sh && sh solve.sh || test -f fix.py && python3 fix.py || echo 'no solve script found'" },
           this.context
         );
         this.recordStep("tool_call", {
           tool: "terminal",
-          input: { command: "test -f solve.sh && sh solve.sh || true" },
+          input: { command: "apply_remediation" },
           output: applyFix.output,
           durationMs: Date.now() - t2,
         });
