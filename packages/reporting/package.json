@@ -1,0 +1,23 @@
+{
+  "name": "@kazi-ai/reporting",
+  "version": "1.0.0",
+  "description": "Terminal, Markdown, HTML reports, and regression comparator for KaziAI Bench",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@kazi-ai/core": "workspace:*",
+    "@kazi-ai/metrics": "workspace:*",
+    "@kazi-ai/tracing": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}
