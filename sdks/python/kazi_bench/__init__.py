@@ -112,6 +112,13 @@ class KaziBenchClient:
         data = res.json()
         return RunRecord(data.get("run", {}))
 
+    def submit_package(self, submission_package: Dict[str, Any]) -> Dict[str, Any]:
+        """Submit a full 5-trial benchmark evaluation package with public trajectories."""
+        res = self.session.post(f"{self.base_url}/api/v1/submissions", json=submission_package)
+        if res.status_code not in (200, 201):
+            raise KaziError(f"Submission rejected: {res.text}")
+        return res.json()
+
     def get_leaderboard(self) -> List[Dict[str, Any]]:
         """Fetch current agent reliability leaderboard."""
         res = self.session.get(f"{self.base_url}/api/v1/leaderboard")
