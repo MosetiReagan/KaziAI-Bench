@@ -1,0 +1,36 @@
+node_modules/
+dist/
+build/
+.turbo/
+*.log
+.DS_Store
+*.tsbuildinfo
+
+# Test & coverage
+coverage/
+.nyc_output/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Runtime & Sandboxes
+.kazi/
+.sandbox/
+tmp/
+artifacts/
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+.venv/
+env/
+dist_py/
+
+# Database
+*.sqlite
+*.sqlite-journal
+*.db

@@ -1,0 +1,26 @@
+{
+  "name": "kazi-ai-bench-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Open-source agent reliability benchmark and evaluation platform",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@10.23.0",
+  "scripts": {
+    "build": "pnpm --filter \"./packages/**\" --filter \"./apps/**\" run build",
+    "test": "pnpm --filter \"./packages/**\" --filter \"./apps/**\" run test",
+    "lint": "pnpm --filter \"./packages/**\" --filter \"./apps/**\" run lint",
+    "typecheck": "pnpm --filter \"./packages/**\" --filter \"./apps/**\" run typecheck",
+    "clean": "pnpm -r exec rm -rf dist node_modules",
+    "format": "prettier --write \"**/*.{ts,tsx,json,md,yaml,yml}\"",
+    "doctor": "node apps/cli/dist/index.js doctor"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}
