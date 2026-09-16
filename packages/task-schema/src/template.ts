@@ -1,4 +1,3 @@
-import { SeededRNG } from "./random.js";
 import { TaskDefinition } from "./task.js";
 
 export interface TaskVariantOptions {

@@ -12,6 +12,13 @@ export function getTaskJsonSchema(): Record<string, unknown> {
   }) as Record<string, unknown>;
 }
 
+export function getMetadataJsonSchema(): Record<string, unknown> {
+  return zodToJsonSchema(TaskMetadataSchema, {
+    name: "KaziAITaskMetadata",
+    target: "jsonSchema7",
+  }) as Record<string, unknown>;
+}
+
 export function getVerificationJsonSchema(): Record<string, unknown> {
   return zodToJsonSchema(VerificationSchema, {
     name: "KaziAIVerificationConfig",
