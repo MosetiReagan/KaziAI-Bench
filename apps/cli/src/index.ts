@@ -3,6 +3,9 @@ import { Command } from "commander";
 import pc from "picocolors";
 import { BENCHMARK_NAME, BENCHMARK_VERSION } from "@kazi-ai/core";
 
+import { registerListCommand } from "./commands/list.js";
+import { registerInfoCommand } from "./commands/info.js";
+
 export const program = new Command();
 
 program
@@ -10,7 +13,10 @@ program
   .description(pc.bold(pc.cyan(`${BENCHMARK_NAME} — The Agent Reliability Benchmark`)))
   .version(BENCHMARK_VERSION);
 
+registerListCommand(program);
+registerInfoCommand(program);
+
 // Entrypoint
-if (process.argv[1] && process.argv[1].endsWith("dist/index.js")) {
+if (process.argv[1] && (process.argv[1].endsWith("dist/index.js") || process.argv[1].endsWith("src/index.ts") || process.argv[1].endsWith("kazi-bench"))) {
   program.parse(process.argv);
 }
