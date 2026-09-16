@@ -1,0 +1,16 @@
+FROM node:20-alpine AS base
+RUN corepack enable && corepack prepare pnpm@10.23.0 --activate
+WORKDIR /app
+
+FROM base AS builder
+COPY package.json pnpm-workspace.yaml tsconfig.base.json ./
+COPY packages ./packages
+COPY apps/worker ./apps/worker
+RUN pnpm install --frozen-lockfile || pnpm install
+RUN pnpm --filter @kazi-ai/core run build || true
+RUN pnpm --filter @kazi-ai/worker run build || true
+
+FROM base AS runner
+WORKDIR /app
+COPY --from=builder /app ./
+CMD ["node", "apps/worker/dist/index.js"]
