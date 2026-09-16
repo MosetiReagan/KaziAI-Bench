@@ -1,0 +1,24 @@
+{
+  "name": "@kazi-ai/verifier",
+  "version": "1.0.0",
+  "description": "Pluggable deterministic verifiers, security scanners, and LLM judges for KaziAI Bench",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@kazi-ai/core": "workspace:*",
+    "@kazi-ai/task-schema": "workspace:*",
+    "@kazi-ai/environment-sdk": "workspace:*",
+    "nanoid": "^5.0.9"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}
