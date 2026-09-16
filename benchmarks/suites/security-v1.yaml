@@ -1,0 +1,7 @@
+id: security-v1
+name: Security & Vulnerability Remediation Suite v1
+version: 1.0.0
+description: Security tasks testing vulnerability detection, input sanitization, and exploit resistance.
+
+tasks:
+  - security.command-injection

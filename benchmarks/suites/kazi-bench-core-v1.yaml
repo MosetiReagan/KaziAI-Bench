@@ -1,0 +1,28 @@
+id: kazi-bench-core-v1
+name: KaziAI Bench Core
+version: 1.0.0
+description: Comprehensive multi-domain benchmark evaluation suite covering coding, terminal, database, security, devops, api, and mcp.
+
+tasks:
+  - coding.fix-auth
+  - coding.fix-pagination
+  - debugging.api-500
+  - debugging.worker-failure
+  - database.query-optimization
+  - security.command-injection
+  - terminal.disk-diagnosis
+  - devops.docker-healthcheck
+  - api.webhook-idempotency
+  - mcp.tool-selection
+
+weights:
+  coding.fix-auth: 1.0
+  coding.fix-pagination: 1.0
+  debugging.api-500: 1.0
+  debugging.worker-failure: 1.0
+  database.query-optimization: 1.0
+  security.command-injection: 1.0
+  terminal.disk-diagnosis: 1.0
+  devops.docker-healthcheck: 1.0
+  api.webhook-idempotency: 1.0
+  mcp.tool-selection: 1.0

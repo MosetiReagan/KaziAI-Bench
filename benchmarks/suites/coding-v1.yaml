@@ -1,0 +1,8 @@
+id: coding-v1
+name: Coding Reliability Suite v1
+version: 1.0.0
+description: Coding benchmarks evaluating multi-step codebase inspection, middleware repair, and algorithm fixes.
+
+tasks:
+  - coding.fix-auth
+  - coding.fix-pagination

@@ -1,0 +1,8 @@
+id: debugging-v1
+name: Debugging & Error Recovery Suite v1
+version: 1.0.0
+description: Debugging tasks evaluating failure localization, error mitigation, and worker resilience.
+
+tasks:
+  - debugging.api-500
+  - debugging.worker-failure
