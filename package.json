@@ -18,6 +18,15 @@
     "doctor": "node apps/cli/dist/index.js doctor"
   },
   "devDependencies": {
+    "@kazi-ai/core": "workspace:*",
+    "@kazi-ai/task-schema": "workspace:*",
+    "@kazi-ai/environment-sdk": "workspace:*",
+    "@kazi-ai/sandbox": "workspace:*",
+    "@kazi-ai/agent-sdk": "workspace:*",
+    "@kazi-ai/verifier": "workspace:*",
+    "@kazi-ai/metrics": "workspace:*",
+    "@kazi-ai/tracing": "workspace:*",
+    "@kazi-ai/reporting": "workspace:*",
     "@types/node": "^22.10.2",
     "prettier": "^3.4.2",
     "typescript": "^5.7.2",

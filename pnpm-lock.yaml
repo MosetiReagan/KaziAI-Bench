@@ -8,6 +8,33 @@ importers:
 
   .:
     devDependencies:
+      '@kazi-ai/agent-sdk':
+        specifier: workspace:*
+        version: link:packages/agent-sdk
+      '@kazi-ai/core':
+        specifier: workspace:*
+        version: link:packages/core
+      '@kazi-ai/environment-sdk':
+        specifier: workspace:*
+        version: link:packages/environment-sdk
+      '@kazi-ai/metrics':
+        specifier: workspace:*
+        version: link:packages/metrics
+      '@kazi-ai/reporting':
+        specifier: workspace:*
+        version: link:packages/reporting
+      '@kazi-ai/sandbox':
+        specifier: workspace:*
+        version: link:packages/sandbox
+      '@kazi-ai/task-schema':
+        specifier: workspace:*
+        version: link:packages/task-schema
+      '@kazi-ai/tracing':
+        specifier: workspace:*
+        version: link:packages/tracing
+      '@kazi-ai/verifier':
+        specifier: workspace:*
+        version: link:packages/verifier
       '@types/node':
         specifier: ^22.10.2
         version: 22.20.3
