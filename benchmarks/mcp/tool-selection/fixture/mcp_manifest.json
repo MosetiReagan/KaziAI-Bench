@@ -1,0 +1,23 @@
+{
+  "server": "utility_tools_v2",
+  "tools": [
+    {
+      "name": "legacy_calculator",
+      "description": "DEPRECATED: Do not use for hashing or cryptography",
+      "status": "deprecated"
+    },
+    {
+      "name": "secure_hasher",
+      "description": "Computes cryptographic hashes for data payloads",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "algorithm": { "type": "string", "enum": ["sha256", "sha512"] },
+          "data": { "type": "string" }
+        },
+        "required": ["algorithm", "data"]
+      },
+      "status": "active"
+    }
+  ]
+}

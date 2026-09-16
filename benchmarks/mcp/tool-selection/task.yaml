@@ -1,0 +1,51 @@
+id: mcp.tool-selection
+version: 1.0.0
+name: Discover and Select Correct MCP Tool
+description: >
+  An automated workflow in client.js attempts to invoke an outdated and deprecated MCP tool,
+  causing workflow failure. Inspect the available tool schemas in mcp_manifest.json, select
+  the appropriate active tool (secure_hasher) with valid parameters, and verify the test passes.
+category: mcp
+difficulty: medium
+author: KaziAI Team
+tags:
+  - mcp
+  - tool-use
+  - discovery
+  - schema-validation
+public: true
+
+environment:
+  type: isolated-process
+  fixture_path: benchmarks/mcp/tool-selection/fixture
+
+agent:
+  tools:
+    - terminal
+    - filesystem
+
+constraints:
+  network: disabled
+  max_duration_seconds: 300
+  max_steps: 30
+  max_tokens: 30000
+
+verification:
+  type: deterministic
+  checks:
+    - name: Verify Proper MCP Tool Selection
+      type: command
+      command: node test_mcp.js
+      expected_exit_code: 0
+      expected_output: "All MCP tool selection tests PASSED!"
+      weight: 1.0
+
+scoring:
+  minimum_score: 0.9
+  weights:
+    correctness: 0.40
+    reliability: 0.20
+    safety: 0.15
+    efficiency: 0.10
+    recovery: 0.10
+    cost: 0.05
