@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { LayoutDashboard, Award, Terminal, FileCode2, GitCompare, ShieldCheck } from "lucide-react";
 import { LeaderboardView } from "./components/LeaderboardView";
+import { RunsView } from "./components/RunsView";
 
 export function App() {
   const [activeTab, setActiveTab] = useState<"overview" | "leaderboard" | "runs" | "trajectory" | "compare">("overview");
@@ -111,8 +112,9 @@ export function App() {
         )}
 
         {activeTab === "leaderboard" && <LeaderboardView />}
+        {activeTab === "runs" && <RunsView />}
 
-        {activeTab !== "overview" && activeTab !== "leaderboard" && (
+        {activeTab !== "overview" && activeTab !== "leaderboard" && activeTab !== "runs" && (
           <div className="bg-gray-900/40 border border-gray-800 rounded-xl p-8 text-center text-gray-400">
             Tab <span className="text-blue-400 font-semibold">{activeTab}</span> component loaded.
           </div>
