@@ -1,0 +1,35 @@
+{
+  "name": "@kazi-ai/api",
+  "version": "1.0.0",
+  "description": "REST API backend for KaziAI Bench",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "typecheck": "tsc --noEmit",
+    "start": "node dist/index.js",
+    "prisma:generate": "prisma generate",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@kazi-ai/core": "workspace:*",
+    "@kazi-ai/task-schema": "workspace:*",
+    "@kazi-ai/agent-sdk": "workspace:*",
+    "@kazi-ai/environment-sdk": "workspace:*",
+    "@kazi-ai/verifier": "workspace:*",
+    "@kazi-ai/metrics": "workspace:*",
+    "@kazi-ai/tracing": "workspace:*",
+    "@prisma/client": "^5.22.0",
+    "fastify": "^5.2.0",
+    "@fastify/cors": "^10.0.1",
+    "@fastify/rate-limit": "^10.2.2",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "prisma": "^5.22.0",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

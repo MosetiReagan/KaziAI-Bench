@@ -1,0 +1,83 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Task {
+  id          String   @id
+  name        String
+  category    String
+  difficulty  String
+  version     String
+  description String
+  timeoutMs   Int      @default(60000)
+  createdAt   DateTime @default(now())
+  runs        Run[]
+
+  @@map("tasks")
+}
+
+model Run {
+  id              String       @id
+  taskId          String
+  agentId         String
+  modelId         String
+  status          String       @default("QUEUED") // QUEUED, RUNNING, COMPLETED, FAILED, TIMED_OUT, CANCELLED
+  success         Boolean      @default(false)
+  score           Float        @default(0.0)
+  totalSteps      Int          @default(0)
+  totalDurationMs Int          @default(0)
+  totalCostUsd    Float        @default(0.0)
+  totalTokens     Int          @default(0)
+  failureCategory String?
+  seed            String
+  createdAt       DateTime     @default(now())
+  finishedAt      DateTime?
+  task            Task         @relation(fields: [taskId], references: [id])
+  trajectories    Trajectory[]
+  metrics         Metric[]
+
+  @@index([taskId])
+  @@index([agentId])
+  @@index([modelId])
+  @@index([status])
+  @@map("runs")
+}
+
+model Trajectory {
+  id         String   @id @default(cuid())
+  runId      String
+  data       String   // JSON string of AgentTrajectory
+  createdAt  DateTime @default(now())
+  run        Run      @relation(fields: [runId], references: [id], onDelete: Cascade)
+
+  @@index([runId])
+  @@map("trajectories")
+}
+
+model Metric {
+  id        String   @id @default(cuid())
+  runId     String
+  key       String
+  value     Float
+  createdAt DateTime @default(now())
+  run       Run      @relation(fields: [runId], references: [id], onDelete: Cascade)
+
+  @@index([runId])
+  @@index([key])
+  @@map("metrics")
+}
+
+model ApiKey {
+  id        String   @id @default(cuid())
+  keyHash   String   @unique
+  name      String
+  role      String   @default("user") // admin, user, read-only
+  createdAt DateTime @default(now())
+
+  @@map("api_keys")
+}
