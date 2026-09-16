@@ -1,0 +1,98 @@
+{
+  "submission_id": "sub_external_stanford_ai_eval_001",
+  "metadata": {
+    "agent_name": "ReAct-Evaluator-Agent",
+    "agent_version": "1.2.0",
+    "organization": "Stanford Autonomous Systems Lab",
+    "model_name": "claude-3-5-sonnet-20241022",
+    "model_provider": "anthropic",
+    "benchmark_suite": "kazi-bench-core-v2.0.0",
+    "config": {
+      "temperature": 0.0,
+      "max_steps": 30,
+      "timeout_seconds": 300,
+      "tools_enabled": ["terminal", "filesystem"]
+    },
+    "contact_email": "eval@cs.stanford.edu",
+    "repository_url": "https://github.com/stanford-asl/agent-eval",
+    "public_logs": true
+  },
+  "task_results": [
+    {
+      "task_id": "coding.fix-auth",
+      "trials": [
+        {
+          "trial_number": 1,
+          "seed": "42",
+          "passed": true,
+          "score": 1.0,
+          "duration_ms": 12400,
+          "tokens": { "prompt": 2100, "completion": 450, "total": 2550 },
+          "cost_usd": 0.0078,
+          "trajectory": [
+            { "step": 1, "tool": "terminal", "cmd": "cat src/auth.ts", "output": "function verifyToken...", "durationMs": 140 },
+            { "step": 2, "tool": "filesystem", "action": "patch", "durationMs": 220 },
+            { "step": 3, "tool": "terminal", "cmd": "npm test", "output": "PASS 3 tests passed", "durationMs": 1120 }
+          ],
+          "verification_evidence": [{ "check": "verify-tests", "passed": true }]
+        },
+        {
+          "trial_number": 2,
+          "seed": "108",
+          "passed": true,
+          "score": 1.0,
+          "duration_ms": 13100,
+          "tokens": { "prompt": 2250, "completion": 480, "total": 2730 },
+          "cost_usd": 0.0082,
+          "trajectory": [{ "step": 1, "tool": "terminal", "cmd": "npm test" }],
+          "verification_evidence": [{ "check": "verify-tests", "passed": true }]
+        },
+        {
+          "trial_number": 3,
+          "seed": "256",
+          "passed": true,
+          "score": 1.0,
+          "duration_ms": 11900,
+          "tokens": { "prompt": 1950, "completion": 420, "total": 2370 },
+          "cost_usd": 0.0071,
+          "trajectory": [{ "step": 1, "tool": "terminal", "cmd": "npm test" }],
+          "verification_evidence": [{ "check": "verify-tests", "passed": true }]
+        },
+        {
+          "trial_number": 4,
+          "seed": "512",
+          "passed": true,
+          "score": 1.0,
+          "duration_ms": 14200,
+          "tokens": { "prompt": 2400, "completion": 510, "total": 2910 },
+          "cost_usd": 0.0087,
+          "trajectory": [{ "step": 1, "tool": "terminal", "cmd": "npm test" }],
+          "verification_evidence": [{ "check": "verify-tests", "passed": true }]
+        },
+        {
+          "trial_number": 5,
+          "seed": "1024",
+          "passed": false,
+          "score": 0.4,
+          "duration_ms": 30000,
+          "tokens": { "prompt": 4500, "completion": 900, "total": 5400 },
+          "cost_usd": 0.0162,
+          "trajectory": [{ "step": 1, "tool": "terminal", "cmd": "npm test", "output": "FAIL" }],
+          "verification_evidence": [{ "check": "verify-tests", "passed": false }]
+        }
+      ],
+      "mean_score": 0.88,
+      "pass_rate": 80.0,
+      "std_dev": 0.24
+    }
+  ],
+  "aggregate": {
+    "total_tasks": 1,
+    "total_trials": 5,
+    "overall_pass_rate": 80.0,
+    "overall_composite_score": 88.0,
+    "mean_duration_ms": 16320,
+    "mean_cost_usd": 0.0096
+  },
+  "submitted_at": "2026-09-16T14:30:00.000Z"
+}
