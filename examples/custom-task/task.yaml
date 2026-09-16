@@ -1,0 +1,41 @@
+id: custom.health-check
+name: "Verify Web Service Health and Endpoints"
+version: "1.0.0"
+category: api
+difficulty: easy
+description: "Verify that service status is reported as ok and database connectivity is established."
+author: "KaziAI Community"
+tags: ["example", "api", "health"]
+
+agent:
+  tools:
+    - terminal
+    - filesystem
+  initial_prompt: |
+    Verify the health service implementation in src/index.js.
+    Ensure curl http://localhost:8080/health returns status 200 with {"status":"ok"}.
+
+constraints:
+  network: localhost_only
+  max_duration_seconds: 30
+  max_steps: 10
+  max_tokens: 8000
+
+environment:
+  type: isolated-process
+
+setup:
+  - command: "mkdir -p src && echo '{\"status\":\"ok\"}' > src/health.json"
+
+verification:
+  checks:
+    - id: check-json
+      type: filesystem
+      file_path: "src/health.json"
+      contains_regex: "\"status\":\\s*\"ok\""
+      weight: 1.0
+
+scoring:
+  weights:
+    verification: 0.8
+    efficiency: 0.2
