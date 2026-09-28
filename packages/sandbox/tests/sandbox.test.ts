@@ -58,5 +58,5 @@ describe("@kazi-ai/sandbox", () => {
     expect(result.stdout).toContain("hello kazi sandbox");
 
     await box.destroy();
-  });
+  }, 120_000);
 });

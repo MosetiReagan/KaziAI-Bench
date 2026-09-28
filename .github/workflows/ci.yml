@@ -21,9 +21,7 @@ jobs:
           node-version: 20
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 10.23.0
+        uses: pnpm/action-setup@v4
 
       - name: Get pnpm store directory
         shell: bash
@@ -40,6 +38,9 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
+
+      - name: Build workspace packages
+        run: pnpm build
 
       - name: Typecheck
         run: pnpm typecheck
